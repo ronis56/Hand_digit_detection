@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DigitVision AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <header class="hero">
+
+        <div class="badge">
+            ✦ CNN HANDWRITTEN DIGIT RECOGNITION
+        </div>
+
+        <h1>
+            DigitVision AI
+        </h1>
+
+        <p>
+            Upload an image or capture a handwritten
+            digit using your camera.
+        </p>
+
+        <div class="status">
+            <span></span>
+            CNN MODEL ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- INPUT CARDS -->
+
+    <section class="input-section">
+
+        <!-- UPLOAD -->
+
+        <div class="card">
+
+            <div class="icon">
+                📁
+            </div>
+
+            <h2>
+                Upload Image
+            </h2>
+
+            <p>
+                Select a handwritten digit
+                from your device.
+            </p>
+
+            <label
+                for="imageInput"
+                class="primary-btn"
+            >
+                Choose Image
+            </label>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                hidden
+            >
+
+        </div>
+
+
+        <!-- CAMERA -->
+
+        <div class="card">
+
+            <div class="icon">
+                📷
+            </div>
+
+            <h2>
+                Live Camera
+            </h2>
+
+            <p>
+                Take a live photo of your digit.
+            </p>
+
+            <button
+                id="openCamera"
+                class="primary-btn"
+            >
+                Open Camera
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CAMERA -->
+
+    <section
+        id="cameraSection"
+        class="camera-section hidden"
+    >
+
+        <div class="camera-header">
+
+            <h2>
+                📷 Camera
+            </h2>
+
+            <button
+                id="closeCamera"
+                class="close-btn"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="camera-container">
+
+            <video
+                id="video"
+                autoplay
+                playsinline
+            ></video>
+
+            <!-- Guide -->
+
+            <div class="camera-guide">
+
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="camera-controls">
+
+            <button
+                id="flipCamera"
+                class="secondary-btn"
+            >
+                🔄 Flip Camera
+            </button>
+
+            <button
+                id="capturePhoto"
+                class="capture-btn"
+            >
+                📸 Capture
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIEW -->
+
+    <section
+        id="previewSection"
+        class="preview-section hidden"
+    >
+
+        <div class="card">
+
+            <h2>
+                🖼️ Selected Image
+            </h2>
+
+            <img
+                id="previewImage"
+                alt="Selected digit"
+            >
+
+            <button
+                id="predictBtn"
+                class="predict-btn"
+            >
+                🔮 Predict Digit
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOADING -->
+
+    <div
+        id="loading"
+        class="loading hidden"
+    >
+
+        <div class="spinner"></div>
+
+        <p>
+            CNN is analyzing your digit...
+        </p>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <section
+        id="resultSection"
+        class="result-section hidden"
+    >
+
+        <div class="result-grid">
+
+            <!-- PROCESSED -->
+
+            <div class="card">
+
+                <h2>
+                    🔍 CNN Input
+                </h2>
+
+                <p>
+                    Processed 28 × 28 image
+                </p>
+
+                <div class="processed-container">
+
+                    <img
+                        id="processedImage"
+                        alt="Processed image"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- PREDICTION -->
+
+            <div class="prediction-card">
+
+                <div class="result-label">
+                    PREDICTED DIGIT
+                </div>
+
+                <div
+                    id="predictionDigit"
+                    class="prediction-digit"
+                >
+                    -
+                </div>
+
+                <div class="confidence">
+
+                    Confidence:
+
+                    <strong
+                        id="confidence"
+                    >
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="confidence-bar">
+
+                    <div
+                        id="confidenceFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROBABILITIES -->
+
+        <div class="card probability-card">
+
+            <h2>
+                📊 Digit Probabilities
+            </h2>
+
+            <div
+                id="probabilities"
+                class="probabilities"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TIPS -->
+
+    <section class="tips">
+
+        <h2>
+            💡 Tips for better prediction
+        </h2>
+
+        <div class="tips-grid">
+
+            <div>
+                ✍️ Write only one digit
+            </div>
+
+            <div>
+                💡 Use good lighting
+            </div>
+
+            <div>
+                🎯 Keep the digit centered
+            </div>
+
+            <div>
+                🧾 Use a clean background
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        Built with HTML • CSS • JavaScript • Flask • TensorFlow
+
+    </footer>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+</body>
+
+</html>
