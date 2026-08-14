@@ -1,0 +1,793 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f8fafc
+        );
+
+    min-height: 100vh;
+
+    color: #172033;
+}
+
+
+.container {
+
+    width: 100%;
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 25px;
+}
+
+
+/* -----------------------------------
+   HERO
+----------------------------------- */
+
+.hero {
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
+
+    color: white;
+
+    padding: 45px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(15, 23, 42, 0.2);
+}
+
+.badge {
+
+    display: inline-block;
+
+    padding: 8px 15px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+
+    font-size: 52px;
+
+    margin-bottom: 10px;
+}
+
+.hero p {
+
+    font-size: 17px;
+
+    opacity: .8;
+
+    margin-bottom: 20px;
+}
+
+.status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.status span {
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 10px #22c55e;
+}
+
+
+/* -----------------------------------
+   INPUT
+----------------------------------- */
+
+.input-section {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+
+.card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15, 23, 42, .07);
+
+    border:
+        1px solid #e2e8f0;
+}
+
+.card .icon {
+
+    font-size: 45px;
+
+    margin-bottom: 12px;
+}
+
+.card h2 {
+
+    margin-bottom: 8px;
+}
+
+.card p {
+
+    color: #64748b;
+
+    margin-bottom: 20px;
+}
+
+
+/* -----------------------------------
+   BUTTONS
+----------------------------------- */
+
+.primary-btn,
+.predict-btn,
+.capture-btn,
+.secondary-btn,
+.close-btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition:
+        .2s ease;
+}
+
+
+.primary-btn {
+
+    display: inline-block;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    color: white;
+
+    padding:
+        13px 22px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+}
+
+.primary-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(79,70,229,.3);
+}
+
+
+/* -----------------------------------
+   CAMERA
+----------------------------------- */
+
+.camera-section {
+
+    background: #111827;
+
+    border-radius: 22px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+    color: white;
+}
+
+.camera-header {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.close-btn {
+
+    background:
+        #374151;
+
+    color: white;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 10px;
+}
+
+
+.camera-container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: black;
+}
+
+#video {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 550px;
+
+    object-fit: cover;
+}
+
+
+/* -----------------------------------
+   CAMERA GUIDE
+----------------------------------- */
+
+.camera-guide {
+
+    position: absolute;
+
+    inset: 15% 20%;
+
+    border:
+        2px dashed
+        rgba(255,255,255,.7);
+
+    border-radius: 20px;
+
+    pointer-events: none;
+}
+
+
+.corner {
+
+    position: absolute;
+
+    width: 30px;
+
+    height: 30px;
+
+    border-color: white;
+
+    border-style: solid;
+}
+
+.top-left {
+
+    top: -2px;
+    left: -2px;
+
+    border-width:
+        4px 0 0 4px;
+}
+
+.top-right {
+
+    top: -2px;
+    right: -2px;
+
+    border-width:
+        4px 4px 0 0;
+}
+
+.bottom-left {
+
+    bottom: -2px;
+    left: -2px;
+
+    border-width:
+        0 0 4px 4px;
+}
+
+.bottom-right {
+
+    bottom: -2px;
+    right: -2px;
+
+    border-width:
+        0 4px 4px 0;
+}
+
+
+/* -----------------------------------
+   CAMERA BUTTONS
+----------------------------------- */
+
+.camera-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.capture-btn {
+
+    background: white;
+
+    color: #111827;
+
+    padding:
+        14px 25px;
+
+    border-radius: 50px;
+}
+
+.secondary-btn {
+
+    background:
+        #374151;
+
+    color: white;
+
+    padding:
+        14px 22px;
+
+    border-radius: 50px;
+}
+
+
+/* -----------------------------------
+   PREVIEW
+----------------------------------- */
+
+.preview-section {
+
+    margin-bottom: 25px;
+}
+
+#previewImage {
+
+    display: block;
+
+    max-width: 100%;
+
+    max-height: 400px;
+
+    margin: auto;
+
+    border-radius: 15px;
+}
+
+
+.predict-btn {
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+    border-radius: 13px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    font-size: 16px;
+}
+
+
+/* -----------------------------------
+   RESULT
+----------------------------------- */
+
+.result-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+
+.processed-container {
+
+    text-align: center;
+
+    padding: 20px;
+
+    background: #f1f5f9;
+
+    border-radius: 15px;
+}
+
+#processedImage {
+
+    width: 280px;
+
+    height: 280px;
+
+    image-rendering: pixelated;
+
+    max-width: 100%;
+}
+
+
+/* -----------------------------------
+   PREDICTION
+----------------------------------- */
+
+.prediction-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
+
+    color: white;
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.result-label {
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    opacity: .7;
+}
+
+.prediction-digit {
+
+    font-size: 130px;
+
+    font-weight: 900;
+
+    line-height: 1.1;
+}
+
+.confidence {
+
+    font-size: 18px;
+
+    margin-bottom: 15px;
+}
+
+.confidence-bar {
+
+    width: 100%;
+
+    height: 12px;
+
+    background:
+        rgba(255,255,255,.15);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+#confidenceFill {
+
+    height: 100%;
+
+    width: 0%;
+
+    background: #22c55e;
+
+    transition:
+        width .7s ease;
+}
+
+
+/* -----------------------------------
+   PROBABILITY
+----------------------------------- */
+
+.probabilities {
+
+    display: grid;
+
+    gap: 12px;
+}
+
+.probability-row {
+
+    display: grid;
+
+    grid-template-columns:
+        40px 1fr 70px;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.probability-label {
+
+    font-weight: bold;
+}
+
+.probability-bar {
+
+    height: 10px;
+
+    background: #e2e8f0;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.probability-fill {
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    border-radius: 10px;
+}
+
+
+/* -----------------------------------
+   TIPS
+----------------------------------- */
+
+.tips {
+
+    margin-top: 30px;
+
+    text-align: center;
+}
+
+.tips h2 {
+
+    margin-bottom: 20px;
+}
+
+.tips-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.tips-grid div {
+
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.05);
+
+    font-size: 14px;
+}
+
+
+/* -----------------------------------
+   LOADING
+----------------------------------- */
+
+.loading {
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.spinner {
+
+    width: 45px;
+
+    height: 45px;
+
+    border:
+        5px solid #e2e8f0;
+
+    border-top-color:
+        #4f46e5;
+
+    border-radius: 50%;
+
+    animation:
+        spin 1s linear infinite;
+
+    margin: auto auto 15px;
+}
+
+@keyframes spin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* -----------------------------------
+   FOOTER
+----------------------------------- */
+
+footer {
+
+    text-align: center;
+
+    color: #64748b;
+
+    padding: 30px 0 10px;
+
+    font-size: 13px;
+}
+
+
+/* -----------------------------------
+   HIDDEN
+----------------------------------- */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* -----------------------------------
+   MOBILE
+----------------------------------- */
+
+@media (max-width: 768px) {
+
+    .container {
+        padding: 12px;
+    }
+
+    .hero {
+
+        padding: 30px 20px;
+
+        border-radius: 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .input-section,
+    .result-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .camera-controls {
+
+        flex-direction: column;
+    }
+
+    .capture-btn,
+    .secondary-btn {
+
+        width: 100%;
+    }
+
+    .prediction-digit {
+
+        font-size: 100px;
+    }
+}
